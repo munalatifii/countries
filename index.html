@@ -13,7 +13,6 @@
             margin: 0;
             position: relative;
         }
-
         body:before {
             content: "";
             position: absolute;
@@ -27,12 +26,14 @@
             z-index: -1;
         }
 
+        /*Header styling*/
         h1 {
             margin-top: 20px;
             letter-spacing: 2px;
             color: rgb(215, 216, 190);
         }
 
+        /*Container Styling*/
         .container {
             display: flex;
             width: 93%;
@@ -40,7 +41,6 @@
             margin-top: 20px;
             flex-wrap: wrap;
         }
-
         .table-container {
             flex: 3;
             margin-right: 20px;
@@ -50,7 +50,9 @@
             flex: 2;
             text-align: center;
         }
-
+        #chart-container {
+            width: 100%;
+        }
         .table-container,
         .page-container,
         .chart-container {
@@ -62,6 +64,7 @@
             height:500px;
         }
 
+        /*Table Styling*/
         table {
             color: rgb(215, 216, 190);
             font-size: 14px;
@@ -70,7 +73,6 @@
             width: 100%;
             table-layout: fixed; 
         }
-
         th, td {
             color: rgb(215, 216, 190);
             font-size: 14px;
@@ -81,32 +83,73 @@
             word-wrap: break-word; 
             white-space: normal; 
         }
-
         th {
             color: rgb(215, 216, 190);
             cursor: pointer;
             position: relative;
         }
-
         th .sort-arrow {
             margin-left: 5px;
             font-size: 9px;
             display: inline-block;
             transition: transform 0.3s;
         }
-
         th.asc .sort-arrow {
             transform: rotate(180deg);
         }
-
         th.desc .sort-arrow {
             transform: rotate(0deg);
         }
 
-        .search-box {
-            margin-top: 5px;
+        /* Tooltip for headers */
+        th.sortable::after {
+            content: attr(data-tooltip); /* Tooltip text */
+            position: absolute;
+            bottom: 100%; /* Position above the element */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(176, 177, 160, 0.2); /* Background color */
+            color: #fff; /* Text color */
+            padding: 5px; /* Padding around the text */
+            border-radius: 4px; /* Rounded corners */
+            white-space: nowrap; /* Prevents text from wrapping */
+            opacity: 0; /* Make it invisible */
+            visibility: hidden; /* Prevent it from taking up space */
+            transition: opacity 0.3s; /* Smooth transition */
+            font-size: 11px; /* Font size */
+            z-index: 1; /* Ensure it's on top of other elements */
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        th.sortable:hover::after {
+            opacity: 1; /* Make it visible */
+            visibility: visible; /* Make it take up space */
+        }
+    
+         /* Tooltip for headers */
+         th.sortable::after {
+            content: attr(data-tooltip); /* Tooltip text */
+            position: absolute;
+            bottom: 100%; /* Position above the element */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(176, 177, 160, 0.2); /* Background color */
+            color: #fff; /* Text color */
+            padding: 5px; /* Padding around the text */
+            border-radius: 4px; /* Rounded corners */
+            white-space: nowrap; /* Prevents text from wrapping */
+            opacity: 0; /* Make it invisible */
+            visibility: hidden; /* Prevent it from taking up space */
+            transition: opacity 0.3s; /* Smooth transition */
+            font-size: 11px; /* Font size */
+            z-index: 1; /* Ensure it's on top of other elements */
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        th.sortable:hover::after {
+            opacity: 1; /* Make it visible */
+            visibility: visible; /* Make it take up space */
         }
 
+        /*Search Box Styling*/
         input[type="text"] {
             padding: 8px;
             background-color: rgb(236, 238, 226);
@@ -115,35 +158,64 @@
             width: 300px;
             outline: none;
         }
+        .search-box {
+            margin-top: 5px;
+        }
 
+        /*Highlight Styling*/
         .highlight {
             background-color: rgb(216, 216, 167);
             color: rgb(54, 61, 54);
         }
 
+        /*Favorite Star Styling*/
         .fa-star {
             color: rgb(220, 223, 203);
             cursor: pointer;
         }
-
+        .fa-star:hover{
+            color: rgb(192, 192, 26);
+        }
         .fa-star.checked {
             color: rgb(192, 192, 26);
         }
-
-        #chart-container {
-            width: 100%;
+        .favorite-toggle {
+            cursor: pointer;
+            font-size: 14px;
+        }   
+        .favorite-toggle:hover {
+            color: rgb(192, 192, 26);
+        }
+        .favorite-toggle::after {
+            content: "Sort favourites"; /* Tooltip text */
+            position: absolute;
+            bottom: 100%; /* Position above the element */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(176, 177, 160,0.2); 
+            color: #fff; 
+            padding: 5px; 
+            border-radius: 4px; 
+            white-space: nowrap; /* Prevents text from wrapping */
+            opacity: 0;
+            visibility: hidden; 
+            transition: opacity 0.3s; 
+            font-size: 11px; 
+            z-index: 1; /* Ensure it's on top of other elements */
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .favorite-toggle:hover::after {
+            opacity: 1; /* Make it visible */
+            visibility: visible; /* Make it take up space */
         }
 
+        /*Canvas Styling*/
         canvas {
             width: 100% !important;
             max-width: 1000px;
         }
 
-        .favorite-toggle {
-            cursor: pointer;
-            font-size: 14px;
-        }
-
+        /*Pagination*/
         .pagination {
             display: flex;
             justify-content: center;
@@ -151,25 +223,20 @@
             color: rgb(215, 216, 190);
             font-family: Arial, Helvetica, sans-serif;
         }
-
         .pagination span {
             margin: 0 5px;
             cursor: pointer;
         }
-
         .pagination span.disabled {
             opacity: 0.5;
             cursor: default;
         }
-
         .pagination span.current {
             text-decoration: underline;
         }
-
         .pagination span:disabled {
             cursor: default;
         }
-
         .subtle-labels {
             color: rgb(215, 216, 190);
             opacity: 0.4;
@@ -178,6 +245,7 @@
             letter-spacing: 0.5px;
         }
 
+        /*Header Styling*/
         .fixed-header {
             position: absolute;
             top: 0;
@@ -187,7 +255,6 @@
             padding: 10px 0;
             text-align: center;
         }
-
         .fixed-content {
             margin-top: 150px; 
         }
@@ -211,11 +278,11 @@
                         <th style="border: 0px; width: 16px;">
                             <i class="fa fa-star favorite-toggle" id="favoriteToggle"></i>
                         </th>
-                        <th onclick="sortTable('name')" style="width: 200px;">Name <span class="sort-arrow">▼</span></th>
-                        <th onclick="sortTable('region')" style="width: 60px;">Region <span class="sort-arrow">▼</span></th>
+                        <th onclick="sortTable('name')" style="width: 200px;" class="sortable" data-tooltip="Sort by name">Name <span class="sort-arrow">▼</span></th>
+                        <th onclick="sortTable('region')" style="width: 60px;" class="sortable" data-tooltip="Sort by region">Region <span class="sort-arrow">▼</span></th>
                         <th style="width: 40px;">Flag</th>
-                        <th onclick="sortTable('capital')" style="width: 100px;">Capital <span class="sort-arrow">▼</span></th>
-                        <th onclick="sortTable('population')" style="width: 100px;">Population <span class="sort-arrow">▼</span></th>
+                        <th onclick="sortTable('capital')" style="width: 100px;" class="sortable" data-tooltip="Sort by capital">Capital <span class="sort-arrow">▼</span></th>
+                        <th onclick="sortTable('population')" style="width: 100px;" class="sortable" data-tooltip="Sort by population">Population <span class="sort-arrow">▼</span></th>
                     </tr>
                 </thead>
                 
@@ -240,30 +307,28 @@
     </div>
 </body>
 <script type="text/javascript">
-
     // Initialize global variables
-    var xhttp = new XMLHttpRequest();
-    var respJSON = [];
-    var currentSortColumn = '';
-    var currentSortOrder = 'asc';
-    var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    var showFavorites = false;
-    var currentPage = 1;
-    var itemsPerPage = 10;
+    var xhttp = new XMLHttpRequest();  // For making HTTP requests
+    var respJSON = [];  // To store the response data in JSON format
+    var currentSortColumn = '';  // To track the current column being sorted
+    var currentSortOrder = 'asc';  // To track the current sort order
+    var favorites = JSON.parse(localStorage.getItem('favorites')) || [];  // To store favorite countries from local storage
+    var showFavorites = false;  // To toggle the display of favorite countries
+    var currentPage = 1;  // To track the current page in pagination
+    var itemsPerPage = 10;  //  Number of items to display per page
 
     // Initialize the chart
     var ctx = document.getElementById('populationChart').getContext('2d');
     var populationChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: [],
+            labels: [],  // Labels for the x-axis
             datasets: [{
                 label: 'Population',
-                data: [],
-                backgroundColor: 'rgb(215, 216, 190, 0.2)',
-                borderColor: 'rgb(215, 216, 190, 0.4)',
-                borderWidth: 1,
-                opacity: 0.4
+                data: [],  // Population data for the chart
+                backgroundColor: 'rgb(215, 216, 190, 0.2)',  // Bar background color
+                borderColor: 'rgb(215, 216, 190, 0.4)',  // Bar border color
+                borderWidth: 1
             }]
         },
         options: {
@@ -272,32 +337,31 @@
                 x: {
                     beginAtZero: true,
                     ticks: {
-                        color: 'rgb(215, 216, 190)'  
+                        color: 'rgb(215, 216, 190)'  // X-axis tick color
                     },
                     title: {
-                        color: 'rgb(215, 216, 190)'  
+                        color: 'rgb(215, 216, 190)'  // X-axis title color
                     },
                     grid: {
-                        color: 'rgba(215, 216, 190, 0.2)'  
+                        color: 'rgba(215, 216, 190, 0.2)'  // X-axis grid color
                     }
                 },
                 y: {
                     ticks: {
-                        color: 'rgb(215, 216, 190)'  
-                        
+                        color: 'rgb(215, 216, 190)'  // Y-axis tick color
                     },
                     title: {
-                        color: 'rgb(215, 216, 190)'  
+                        color: 'rgb(215, 216, 190)'  // Y-axis title color
                     },
                     grid: {
-                        color: 'rgba(215, 216, 190, 0.2)'  
+                        color: 'rgba(215, 216, 190, 0.2)'  // Y-axis grid color
                     }
                 }
             },
             plugins: {
                 legend: {
                     labels: {
-                        color: 'rgb(215, 216, 190)'  
+                        color: 'rgb(215, 216, 190)'  // Legend label color
                     }
                 }
             }
@@ -307,32 +371,35 @@
     // Fetch country data from API
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            var resp = this.responseText;
-            respJSON = JSON.parse(resp);
-            renderTable(respJSON);
+            var resp = this.responseText;  // Get the response text
+            respJSON = JSON.parse(resp);  // Parse the response text into JSON
+            renderTable(respJSON);  // Render the table with the fetched data
         }
     };
 
-    xhttp.open("GET", "https://restcountries.com/v3.1/all", true);
-    xhttp.send();
+    xhttp.open("GET", "https://restcountries.com/v3.1/all", true);  // Open a GET request to the API
+    xhttp.send();  // Send the request
 
     // Function to render the table with data
     function renderTable(data, query = "") {
         var html = document.getElementById("list");
-        html.innerHTML = "";
+        html.innerHTML = "";  // Clear the table content
 
+        // Filter data based on search query
         var filteredData = data.filter(function(country) {
             var name = country.name.common;
             var capital = country.capital ? country.capital[0] : '';
             return name.toLowerCase().includes(query) || capital.toLowerCase().includes(query);
         });
 
+        // Display message if no matches found
         if (filteredData.length === 0) {
             html.innerHTML = "<tr><td colspan='6' style='text-align: center; color: rgb(215, 216, 190);'>No matches found</td></tr>";
             updatePagination(0);
             return;
         }
 
+        // Sort by favorites if showFavorites is true
         if (showFavorites) {
             filteredData.sort(function(a, b) {
                 var isAFavorite = favorites.includes(a.name.common);
@@ -341,12 +408,14 @@
             });
         }
 
+        // Pagination logic
         var totalPages = Math.ceil(filteredData.length / itemsPerPage);
         if (currentPage > totalPages) currentPage = totalPages;
         var startIndex = (currentPage - 1) * itemsPerPage;
         var endIndex = startIndex + itemsPerPage;
         var pageData = filteredData.slice(startIndex, endIndex);
 
+        // Render the rows for the current page
         for (var i = 0; i < pageData.length; i++) {
             var country = pageData[i];
             var name = country.name.common;
@@ -369,11 +438,11 @@
                             "</tr>";
         }
 
-        updatePagination(totalPages);
-        updateChart();
+        updatePagination(totalPages);  // Update pagination
+        updateChart();  // Update the chart
     }
 
-    //Function to sort table according to name, region, capital and population
+    // Function to sort table according to name, region, capital and population
     function sortTable(column) {
         if (currentSortColumn === column) {
             currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
@@ -382,6 +451,7 @@
             currentSortOrder = 'asc';
         }
 
+        // Sorting logic based on column
         respJSON.sort(function(a, b) {
             var valA, valB;
             if (column === 'name') {
@@ -405,10 +475,11 @@
             }
         });
 
-        renderTable(respJSON, document.getElementById("search").value.toLowerCase());
-        updateSortArrows();
+        renderTable(respJSON, document.getElementById("search").value.toLowerCase());  // Re-render the table
+        updateSortArrows();  // Update the sort arrows
     }
 
+    // Function to update sort arrows
     function updateSortArrows() {
         var headers = document.querySelectorAll('th');
         headers.forEach(header => {
@@ -419,40 +490,45 @@
         });
     }
 
+    // Event listener for search input
     document.getElementById("search").addEventListener("input", function() {
         var query = this.value.toLowerCase();
-        renderTable(respJSON, query);
+        renderTable(respJSON, query);  // Re-render the table with search query
     });
 
+    // Function to toggle favorite status
     function toggleFavorite(name) {
         var index = favorites.indexOf(name);
         if (index > -1) {
-            favorites.splice(index, 1);
+            favorites.splice(index, 1);  // Remove from favorites if already a favorite
         } else {
-            favorites.push(name);
+            favorites.push(name);  // Add to favorites if not a favorite
         }
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-        renderTable(respJSON, document.getElementById("search").value.toLowerCase());
+        localStorage.setItem('favorites', JSON.stringify(favorites));  // Update local storage
+        renderTable(respJSON, document.getElementById("search").value.toLowerCase());  // Re-render the table
     }
 
+    // Event listener for favorite toggle button
     document.getElementById('favoriteToggle').addEventListener('click', function() {
-        showFavorites = !showFavorites;
-        this.classList.toggle('checked', showFavorites);
-        renderTable(respJSON, document.getElementById("search").value.toLowerCase());
+        showFavorites = !showFavorites;  // Toggle showFavorites
+        this.classList.toggle('checked', showFavorites);  // Update button class
+        renderTable(respJSON, document.getElementById("search").value.toLowerCase());  // Re-render the table
     });
 
+    // Function to highlight search query matches
     function highlightMatch(text, query) {
         if (!query) return text;
         var re = new RegExp('('+query+')', 'gi');
         return text.replace(re, "<span class='highlight'>$1</span>");
     }
 
+    // Function to update pagination
     function updatePagination(totalPages) {
         var paginationNumbers = document.getElementById('paginationNumbers');
-        paginationNumbers.innerHTML = "";
+        paginationNumbers.innerHTML = "";  // Clear pagination numbers
 
         if (totalPages <= 1) {
-            return;
+            return;  // Return if there's only one page
         }
 
         var paginationHTML = '';
@@ -489,15 +565,17 @@
         paginationNumbers.innerHTML = paginationHTML;
     }
 
+    // Function to change page
     function changePage(direction) {
         if (typeof direction === 'number') {
-            currentPage = direction;
+            currentPage = direction;  // Set current page to the specified page number
         } else {
-            currentPage += direction;
+            currentPage += direction;  // Increment or decrement the current page
         }
-        renderTable(respJSON, document.getElementById("search").value.toLowerCase());
+        renderTable(respJSON, document.getElementById("search").value.toLowerCase());  // Re-render the table
     }
 
+    // Function to update the chart with favorite countries' populations
     function updateChart() {
         var selectedCountries = respJSON.filter(country => favorites.includes(country.name.common));
         var labels = selectedCountries.map(country => country.name.common);
@@ -505,8 +583,9 @@
 
         populationChart.data.labels = labels;
         populationChart.data.datasets[0].data = data;
-        populationChart.update();
+        populationChart.update();  // Update the chart
     }
+
 </script>
 
 </html>
