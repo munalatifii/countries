@@ -36,7 +36,7 @@ Make sure you have the following installed:
 
     If you have any dependencies (e.g., a local server), make sure to install them. For example, if you're using a package manager like npm, run:
     
-    npm install
+        npm install
 
 4. Run the App
     
