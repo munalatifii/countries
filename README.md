@@ -30,6 +30,7 @@ Make sure you have the following installed:
         git clone https://github.com/munalatifii/countries
 
 2. **Navigate to the project directory:**
+        
         cd countries
 
 3. **Install dependencies:**
