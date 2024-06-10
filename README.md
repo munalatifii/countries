@@ -27,7 +27,7 @@ Make sure you have the following installed:
 
    Open your terminal and run the following command to clone the repository:
 
-   git clone https://github.com/munalatifii/countries.git
+   git clone https://github.com/munalatifii/countries
 
 2. **Navigate to the project directory:**
     cd countries
